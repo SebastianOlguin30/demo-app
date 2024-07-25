@@ -16,7 +16,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 // Ejecutar Maven y SonarQube dentro de un entorno SonarQube configurado, todo en bloques steps
-                withSonarQubeEnv('clase8m3') { // Asegúrate de que 'ConJenkings' es el nombre correcto de tu entorno SonarQube en Jenkins
+                withSonarQubeEnv('sonar') { // Asegúrate de que 'ConJenkings' es el nombre correcto de tu entorno SonarQube en Jenkins
                     sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=clase8m3 -Dsonar.projectName='clase8m3'"
                 }
             }
