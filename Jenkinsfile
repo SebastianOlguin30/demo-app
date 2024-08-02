@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Default Maven' // Asegúrate de que 'Default Maven' está configurado en Jenkins
-    }
-
     stages {
         stage('SCM') {
             steps {
