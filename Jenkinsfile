@@ -1,17 +1,26 @@
 pipeline {
     agent any
 
-    stages {
+    tools {
+        maven 'Default Maven' // Asegúrate de que 'Default Maven' está configurado en Jenkins
+    }
 
+    stages {
         stage('SCM') {
-            checkout scm
+            steps {
+                checkout scm
+            }
         }
 
         stage('SonarQube Analysis') {
-            def mvn = tool 'Default Maven';
-            withSonarQubeEnv() {
-                sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Pipeline_Jenkinsfile -Dsonar.projectName='Pipeline_Jenkinsfile'"
+            steps {
+                script {
+                    def mvn = tool 'Default Maven'
+                    withSonarQubeEnv('SonarQube') {
+                        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Sonar_Jenkinsfile -Dsonar.projectName='Sonar_Jenkinsfile'"
+                    }
                 }
+            }
         }
 
         stage('Build') {
