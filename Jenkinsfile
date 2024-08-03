@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     def mvn = tool 'Default Maven'
-                    withSonarQubeEnv('SonarQube') {
+                    withSonarQubeEnv('Sonar') {
                         sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Sonar_Jenkinsfile -Dsonar.projectName='Sonar_Jenkinsfile'"
                     }
                 }
